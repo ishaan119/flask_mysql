@@ -38,7 +38,7 @@ def upload_solar_perf_data(system_capacity, date):
     day, month, year = map(int, date.split('-'))
     date = datetime.datetime.combine(
         datetime.date(year, month, day), datetime.time(0, 0))
-    upload_url = 'http://localhost:5000/api/v1/solar_data/{0}'.format(system_capacity)
+    upload_url = 'http://localhost:5000/apiv1/solar_data/{0}'.format(system_capacity)
     for index, i in enumerate(data):
         if index == 23:
             date = date + datetime.timedelta(minutes=59)
@@ -49,4 +49,4 @@ def upload_solar_perf_data(system_capacity, date):
         print r
 
 
-upload_solar_perf_data(3, '21-01-2015')
+upload_solar_perf_data(222, '23-01-2015')
