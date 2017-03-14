@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import jsonify
+
 
 def validate_date(date):
     try:
@@ -10,3 +10,19 @@ def validate_date(date):
         return (date1, date2)
     except ValueError:
         return False, False
+
+
+def job1(t, j):
+    print 'DOne'
+
+
+'''
+def job1(t, j):
+    logging.basicConfig()
+    msg = Message('Hello', sender='ishaansutaria@gmail.com',
+                  recipients=['ishaansutaria@gmail.com'])
+    msg.body = 'Hsad'
+    with app.app_context():
+        mail.send(msg)
+    print 'mail sent'
+'''

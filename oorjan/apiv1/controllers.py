@@ -26,9 +26,9 @@ def compare_dc_power(solar_system_id):
     day, month, year = date.split('-')
     date1, date2 = validate_date(date)
     # If the Date is not in the valid format
-    if date1 == False:
+    if date1 is False:
         current_app.logger.error('Invalid Date Received:' + date)
-        response = jsonify({'message':'This Date is not in the correct format. It should be DD-MM-YYYY'})
+        response = jsonify({'message': 'This Date is not in the correct format. It should be DD-MM-YYYY'})
         response.status_code = 400
         return response
     data = Datapoints.query.filter(Datapoints.date.between(date1, date2)).all()
@@ -42,7 +42,7 @@ def compare_dc_power(solar_system_id):
     # The .one() call makes sure we only get one row of datapoints for a particular system_capacity
     ref_data = ReferenceData.query.filter(ReferenceData.day == day, ReferenceData.month==month, ReferenceData.system_capacity==solar_system_id).one() 
     dd=ast.literal_eval(ref_data.datapoints)
-    result=[]
+    result = []
     current_app.logger.debug('Reference Data' + ref_data.datapoints)
     i = 0
     for row in data:
@@ -60,7 +60,7 @@ def compare_dc_power(solar_system_id):
 
 @apiv1.route("/solar_data/<system_id>", methods=['POST', ])
 def upload_solar_data(system_id):
-    json_data=request.get_json()
+    json_data = request.get_json()
     # //Todo Validate Json Schema
     # Check if System Id is valid
     solar_system_info = SolarSysMetadata.query.get(system_id)
